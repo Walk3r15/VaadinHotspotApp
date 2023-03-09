@@ -1,0 +1,12 @@
+body, #outlet {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+button{
+  background: aquamarine;
+  &:hover{
+    background: aqua;
+  }
+}

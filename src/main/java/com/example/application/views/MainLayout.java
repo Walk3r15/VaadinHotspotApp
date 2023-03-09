@@ -1,10 +1,10 @@
 package com.example.application.views;
 
-
 import com.example.application.components.appnav.AppNav;
 import com.example.application.components.appnav.AppNavItem;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.login.LoginView;
+import com.example.application.views.register.RegisterView;
 import com.example.application.views.user.UserView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -15,14 +15,11 @@ import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-
 /**
  * The main view is a top-level placeholder for other views.
  */
 public class MainLayout extends AppLayout {
-
     private H2 viewTitle;
-
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
         addDrawerContent();
@@ -38,7 +35,6 @@ public class MainLayout extends AppLayout {
 
         addToNavbar(true, toggle, viewTitle);
     }
-
     private void addDrawerContent() {
         H1 appName = new H1("Hotspot Account APP");
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
@@ -48,7 +44,6 @@ public class MainLayout extends AppLayout {
 
         addToDrawer(header, scroller, createFooter());
     }
-
     private AppNav createNavigation() {
         // AppNav is not yet an official component.
         // For documentation, visit https://github.com/vaadin/vcf-nav#readme
@@ -57,22 +52,18 @@ public class MainLayout extends AppLayout {
         nav.addItem(new AppNavItem("Home", HomeView.class, "la la-home"));
         nav.addItem(new AppNavItem("Login", LoginView.class, "la la-user"));
         nav.addItem(new AppNavItem("User", UserView.class, "la la-user-circle"));
-
+        nav.addItem(new AppNavItem("Register", RegisterView.class, "la la-"));
         return nav;
     }
-
     private Footer createFooter() {
         Footer layout = new Footer();
-
         return layout;
     }
-
     @Override
     protected void afterNavigation() {
         super.afterNavigation();
         viewTitle.setText(getCurrentPageTitle());
     }
-
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
